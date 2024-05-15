@@ -9,7 +9,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val notesService: NotesService) : ViewModel()  {
+class HomeViewModel @Inject constructor(
+//    private val notesService: NotesService
+) : ViewModel()  {
     private val _uiState = MutableStateFlow(HomeState())
     val uiState: StateFlow<HomeState> = _uiState.asStateFlow()
 
