@@ -41,11 +41,24 @@ class NoteDaoTest {
 
     @Test
     fun insertNote() = runTest {
-        val note = Note("Note Title", "Note content.", System.currentTimeMillis(), id = 1)
+        val note = Note("Note Title to insert", "Note content to insert.", System.currentTimeMillis(), id = 1)
+
         dao.insertNote(note)
 
         val allNotes = dao.observeAllNotes().getOrAwaitValue()
 
         assertThat(allNotes).contains(note)
+    }
+
+    @Test
+    fun deleteNote() = runTest {
+        val note = Note("Note Title to remove", "Note content to remove.", System.currentTimeMillis(), id = 1)
+
+        dao.insertNote(note)
+        dao.deleteNote(note)
+
+        val allNotes = dao.observeAllNotes().getOrAwaitValue()
+
+        assertThat(allNotes).doesNotContain(note)
     }
 }
