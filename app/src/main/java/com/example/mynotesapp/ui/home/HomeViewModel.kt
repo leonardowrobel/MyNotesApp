@@ -1,5 +1,7 @@
 package com.example.mynotesapp.ui.home
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.mynotesapp.service.NotesService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,8 +14,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
 //    private val notesService: NotesService
 ) : ViewModel()  {
-    private val _uiState = MutableStateFlow(HomeState())
-    val uiState: StateFlow<HomeState> = _uiState.asStateFlow()
+    private val _state = mutableStateOf(HomeState())
+    val state: State<HomeState> = _state
 
     companion object {
         const val TAG: String = "HOME_VM"
